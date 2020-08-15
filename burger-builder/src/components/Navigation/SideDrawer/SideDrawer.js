@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../../Logo/Logo';
-import NacigationItems from '../NavigationItems/NavigationItems';
+import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.module.css';
 import BackDrop from '../../UI/Backdrop/Backdrop';
 import Aux from '../../../hoc/Auxiliary';
@@ -18,7 +18,7 @@ const sideDrawer = ( props ) => {
                     <Logo />
                 </div>
                 <nav>
-                    <NacigationItems />
+                    <NavigationItems />
                 </nav>
             </div>
         </Aux>

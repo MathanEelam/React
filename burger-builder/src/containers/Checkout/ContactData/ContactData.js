@@ -86,7 +86,8 @@ class ContactData extends Component {
                     ],
                     placeholder: 'Select Deliver Method'
                 },
-                value: '',
+                value: 'fastest',
+                validation: {},
                 valid: true,
             }
         },
@@ -117,6 +118,9 @@ class ContactData extends Component {
 
     checkValidity(value, rules) {
         let isValid = true;
+        if (!rules) {
+            return true;
+        }
 
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
@@ -145,7 +149,7 @@ class ContactData extends Component {
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
 
-        let formIsValid = true;
+    let formIsValid = true;
         for (let inputIdentifier in updatedOrderForm) {
             formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
         }

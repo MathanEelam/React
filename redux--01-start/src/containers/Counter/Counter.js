@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import redux from 'redux';
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
@@ -34,6 +35,13 @@ class Counter extends Component {
                 <CounterControl label="Decrement" clicked={() => this.props.onDecrementCount()}  />
                 <CounterControl label="Add 10" clicked={() => this.props.onAddCount()}  />
                 <CounterControl label="Subtract 15" clicked={() => this.props.onSubtractCount()}  />
+                <hr/>
+                <button onClick={this.props.onStoreResult}>Store Result</button>
+                <ul>
+                    {this.props.storedResults.map(strResult => (
+                        <li onClick={this.props.onDeleteResult}></li>
+                    ))}
+                </ul>
             </div>
         );
     }
@@ -41,7 +49,8 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.counter
+        ctr: state.counter,
+        storedResults: state.results
     };
 }
 
@@ -51,6 +60,8 @@ const mapDispatchToProps = dispatch => {
         onDecrementCount: () => dispatch({type: 'DECREMENT'}),
         onAddCount: () => dispatch({type: 'ADD', val: 10}),
         onSubtractCount: () => dispatch({type: 'SUBTRACT', val: 15}),
+        onStoreResult: () => dispatch({type: 'STORE_RESULT'}),
+        onDeleteResult: (id) => dispatch({type: 'DELETE_RESULT' , resultElId}),
     }
 }
 
